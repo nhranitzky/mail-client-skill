@@ -360,6 +360,9 @@ mail-skill/
 - Keep `chmod 600` on both the config and password files so only your user can read them.
 - All IMAP/SMTP connections use TLS (SSL or STARTTLS as configured).
 
+## Development Notes
+Parts of this codebase were generated or assisted by Claude Code  Sonnet 4.6  
+All generated code has been reviewed and tested by human developers.
 ---
 
 ## License
