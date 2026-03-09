@@ -6,6 +6,7 @@ config.yaml
 .env
 
 # Python
+uv.lock
 __pycache__/
 *.py[cod]
 *.pyo
