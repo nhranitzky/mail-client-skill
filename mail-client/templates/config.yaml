@@ -1,0 +1,39 @@
+# Mail Skill Configuration
+# Copy this file to config.yaml and adjust to your provider.
+# The password is read from the file named in `password_file` (one line).
+# Run:  echo "yourpassword" > ~/.vodafonemail && chmod 600 ~/.vodafonemail
+
+account:
+  name: "Max Mustermann"         # Display name in From: header
+  email: "max@vodafone.de"       # Your email address
+
+password_file: "~/.vodafonemail" # Path to file containing the password (chmod 600)
+
+imap:
+  host: "imap.vodafone.de"
+  port: 993
+  ssl: true                      # port 993 = SSL/TLS on connect
+  # For port 143 (STARTTLS): set ssl: false, starttls: true
+
+smtp:
+  host: "smtp.vodafone.de"
+  port: 587
+  # ---------------------------------------------------------------
+  # Connection mode is AUTO-DETECTED from the port:
+  #   587  -> STARTTLS  (plain connect, then EHLO + STARTTLS upgrade)
+  #   465  -> SMTPS     (SSL/TLS wrap immediately on connect)
+  #   25   -> plain     (no encryption - legacy only)
+  #
+  # For port 587 you MUST NOT set ssl: true - that causes the error:
+  #   [SSL: WRONG_VERSION_NUMBER] wrong version number
+  # ---------------------------------------------------------------
+  starttls: true                 # port 587: true  | port 465: false
+  ssl: false                     # port 587: false | port 465: true
+  # timeout: 30                  # connection timeout in seconds (default: 30)
+
+# Optional defaults
+defaults:
+  inbox: "INBOX"                 # Default folder for list/read commands
+  sent_folder: "Sent"            # Folder where sent messages are copied
+  trash_folder: "Trash"          # Folder for deleted messages
+  page_size: 20                  # Default number of messages per listing

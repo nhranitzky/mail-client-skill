@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# =============================================================================
+# mail – Email CLI launcher.
+#
+# Runs the Python mail scripts via `uv run --project`.
+# The config file path is taken from MAIL_CONFIG_FILE (env var, must be set).
+# The mail password is read by the Python scripts from the file path
+# declared in config.yaml → password_file.  It is NEVER passed on the
+# command line, echoed, or sent to any LLM.
+#
+# Usage:
+#   mail list     [--folder INBOX] [--limit N] [--unread]
+#   mail read     <uid>  [--folder F] [--save-attachments DIR]
+#   mail send     --to <addr> --subject <s> [--body <text>]
+#   mail reply    <uid> [--body <text>] [--reply-all]
+#   mail search   [query] [--from <addr>] [--since DATE]
+#   mail folders  [--counts]
+#   mail manage   move|delete|flag|unflag|mark-read|mark-unread
+#   mail --help
+#
+# Installation (add to PATH):
+#   ln -s "$(pwd)/bin/mail" ~/.local/bin/mail
+# =============================================================================
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
+
+exec uv run --project "$PROJECT_ROOT" --directory "${PROJECT_ROOT}" python -m scripts.main "$@"

@@ -1,0 +1,22 @@
+# Secrets & credentials
+.vodafonemail
+vodafonemail.yaml
+config.yaml
+
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# Build artifacts
+*.skill
+*.zip
